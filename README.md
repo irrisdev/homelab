@@ -30,6 +30,8 @@ sudo nano /etc/ssh/sshd_config
 # PasswordAuthentication -> no
 # UsePAM -> no
 # PermitRootLogin -> no
+
+sudo systemctl restart sshd
 ```
 
 
