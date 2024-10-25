@@ -2,18 +2,18 @@
 ### Update and Upgrade Packages
 
 ```bash
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 ```
 
 ### Add new user and add to sudoers
 ```bash
-sudo adduser default
-sudo usermod -aG sudo default
+sudo adduser i
+sudo usermod -aG sudo i
 ```
 
 ### Install Fail2Ban
 ```bash
-sudo apt install fail2ban
+sudo apt install fail2ban -y
 ```
 
 ### Configure Firewall (UFW)
