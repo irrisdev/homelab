@@ -1,3 +1,23 @@
+# Commonly Used Links and Resources
+
+This document contains links and resources that are frequently used for homelab, development, and personal projects.
+
+## Useful Resources
+
+#### General
+- **Proxmox**: [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE/scripts)
+- **Jellyfin**: [Media Server](https://github.com/TechHutTV/homelab/tree/main/media)
+
+#### Networking
+- [Traefik](https://doc.traefik.io/traefik/)
+- [Nginx Proxy Manager](https://nginxproxymanager.com/setup/)
+- [DuckDNS](https://www.duckdns.org/)
+- [Cloudflare API Docs](https://developers.cloudflare.com/api/resources/dns/subresources/settings/)
+
+#### Other
+- **Ansible**
+
+## Frequent Commands
 
 ### Update and Upgrade Packages
 
