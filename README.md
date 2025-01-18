@@ -5,8 +5,11 @@ This document contains links and resources that are frequently used for homelab,
 ## Useful Resources
 
 #### General
-- **Proxmox**: [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE/scripts)
+- **Proxmox**: 
+  - [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE/scripts)
+  - [Ubuntu VMs](https://github.com/tteck/Proxmox/discussions/2072)
 - **Jellyfin**: [Media Server](https://github.com/TechHutTV/homelab/tree/main/media)
+
 
 #### Networking
 - [Traefik](https://doc.traefik.io/traefik/)
