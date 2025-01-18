@@ -1,0 +1,12 @@
+services:
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /docker/jellyseerr:/app/config
+    network_mode: container:gluetun
+    restart: unless-stopped
