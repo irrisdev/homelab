@@ -39,12 +39,6 @@ sudo usermod -aG sudo i
 sudo apt install fail2ban -y
 ```
 
-### Configure Firewall (UFW)
-```bash
-sudo ufw enable
-sudo ufw allow ssh
-```
-
 ### Configure sshd config
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -54,9 +48,22 @@ sudo nano /etc/ssh/sshd_config
 # UsePAM -> no
 # PermitRootLogin -> no
 
+sed -i \
+-e 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' \
+-e 's/^PasswordAuthentication.*/PasswordAuthentication no/' \
+-e 's/^#*UsePAM.*/UsePAM no/' \
+/etc/ssh/sshd_config
+rm /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+
+sudo systemctl enable ssh
 sudo systemctl restart ssh
 ```
 
+### Configure Firewall (UFW)
+```bash
+sudo ufw enable
+sudo ufw allow ssh
+```
 
 ### Enable Automatic Updates
 ```bash
