@@ -3,18 +3,24 @@
 This document contains links and resources that are frequently used for homelab, development, and personal projects.
 
 ## Applications
-- [x] Jellyfin 
-- Portainer
-- Adguard
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [x] Media Server (Jellyfin) 
+- [x] DNS Server (Adguard)
+- [x] Docker Manager (Portainer)
 
 #### Coming
-- Traefik / NGINX Proxy Manager
-- Home Assistant
-- Homepage
-- Net Data
-- Grafana
-- Tailscale
+- [] Traefik / NGINX Proxy Manager
+- [] Home Assistant
+- [] Homepage
+- [] Net Data
+- [] Grafana
+- [] Tailscale
+
+### Tasks
+- [] Configure Hardware RAID
+- [] Upgrade BIOS Firmware
+- [] Setup TrueNAS - DL320e (6TB)
+- [] Setup Proxmox - DL380p (8TB)
+- [] Reduce Fanspeeds [Link](https://www.reddit.com/r/homelab/comments/sx3ldo/hp_ilo4_v277_unlocked_access_to_fan_controls/)
 
 ## Useful Resources
 
@@ -33,8 +39,8 @@ This document contains links and resources that are frequently used for homelab,
 - [Cloudflare API Docs](https://developers.cloudflare.com/api/resources/dns/subresources/settings/)
 
 #### Other
-- **Ansible**
 - [Adguard DNS Blocklist](https://github.com/hagezi/dns-blocklists)
+- [Composerize](https://www.composerize.com/)
 
 ## Frequent Commands
 

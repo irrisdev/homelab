@@ -27,7 +27,7 @@ services:
       - PORT_FORWARD_ONLY=on
       - VPN_PORT_FORWARDING_PROVIDER=protonvpn
       - HEALTH_VPN_DURATION_INITIAL=120s
-      - FIREWALL_OUTBOUND_SUBNETS=${FIREWALL_OUTBOUND_SUBNETS}
+      - FIREWALL_OUTBOUND_SUBNETS=${FIREWALL_OUTBOUND_SUBNETS}  # Get access to LAN from container
     healthcheck:
       test: ping -c 1 www.google.com || exit 1
       interval: 60s
