@@ -21,13 +21,13 @@ services:
     environment:
       - VPN_SERVICE_PROVIDER=protonvpn
       - VPN_TYPE=wireguard
-      - WIREGUARD_PRIVATE_KEY= ${{ secrets.WIREGUARD_PRIVATE_KEY }}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
       - SERVER_COUNTRIES=United Kingdom
       - SERVER_CITIES=London
       - PORT_FORWARD_ONLY=on
       - VPN_PORT_FORWARDING_PROVIDER=protonvpn
       - HEALTH_VPN_DURATION_INITIAL=120s
-      - FIREWALL_OUTBOUND_SUBNETS= ${{ secrets.FIREWALL_OUTBOUND_SUBNETS }}
+      - FIREWALL_OUTBOUND_SUBNETS=${FIREWALL_OUTBOUND_SUBNETS}
     healthcheck:
       test: ping -c 1 www.google.com || exit 1
       interval: 60s
@@ -77,8 +77,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - NZBGET_USER= ${{ secrets.NZBGET_USER }}
-      - NZBGET_PASS= ${{ secrets.NZBGET_PASS }}
+      - NZBGET_USER=${NZBGET_USER}
+      - NZBGET_PASS=${NZBGET_PASS}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /docker/nzbget:/config
