@@ -2,13 +2,27 @@
 
 This document contains links and resources that are frequently used for homelab, development, and personal projects.
 
+## Applications
+- [x] Jellyfin 
+- Portainer
+- Adguard
+- [ ] Add delight to the experience when all tasks are complete :tada:
+
+#### Coming
+- Traefik / NGINX Proxy Manager
+- Home Assistant
+- Homepage
+- Net Data
+- Grafana
+- Tailscale
+
 ## Useful Resources
 
 #### General
 - **Proxmox**: 
   - [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE/scripts)
   - [Ubuntu VMs](https://github.com/tteck/Proxmox/discussions/2072)
-- **Media Server**: [Media Server](https://github.com/TechHutTV/homelab/tree/main/media)
+- **Media Server**: [Media Server](/media/README.md)
 - **XRDP**: [Setup Guide](/docs/xrdp.md)
 
 
@@ -20,6 +34,7 @@ This document contains links and resources that are frequently used for homelab,
 
 #### Other
 - **Ansible**
+- [Adguard DNS Blocklist](https://github.com/hagezi/dns-blocklists)
 
 ## Frequent Commands
 
