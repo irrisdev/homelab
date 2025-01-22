@@ -16,10 +16,10 @@ This document contains links and resources that are frequently used for homelab,
 - [ ] Tailscale
 
 ### Tasks
-- [ ] Configure Hardware RAID
-- [ ] Upgrade BIOS Firmware
+- [x] Configure Hardware RAID
+- [x] Upgrade BIOS Firmware
 - [ ] Setup TrueNAS - DL320e (6TB)
-- [ ] Setup Proxmox - DL380p (8TB)
+- [x] Setup Proxmox - DL380p (8TB)
 - [ ] Reduce Fanspeeds [Link](https://www.reddit.com/r/homelab/comments/sx3ldo/hp_ilo4_v277_unlocked_access_to_fan_controls/)
 
 ## Useful Resources
