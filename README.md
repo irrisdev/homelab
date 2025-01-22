@@ -44,6 +44,11 @@ This document contains links and resources that are frequently used for homelab,
 
 ## Frequent Commands
 
+### Automatic setup
+```bash
+bash -c "$(wget -qLO - https://raw.githubusercontent.com/irrisdev/homelab/refs/heads/main/setup.sh)"
+```
+
 ### Update and Upgrade Packages
 
 ```bash
