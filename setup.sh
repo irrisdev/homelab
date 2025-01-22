@@ -15,35 +15,35 @@ else
 fi
 
 # Update and upgrade the system
-sudo apt update && sudo apt upgrade -y
+apt update && apt upgrade -y
 
 # Install Fail2Ban for security
-sudo apt install fail2ban -y
+apt install fail2ban -y
 
 # Modify sshd_config to improve security
-sudo sed -i \
+sed -i \
     -e 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' \
     -e 's/^PasswordAuthentication.*/PasswordAuthentication no/' \
     -e 's/^#*UsePAM.*/UsePAM no/' \
     /etc/ssh/sshd_config
 
 # Remove cloud-init ssh configuration file (if present)
-sudo rm -f /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+rm -f /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
 
 # Enable and restart SSH service
-sudo systemctl enable ssh
-sudo systemctl restart ssh
+systemctl enable ssh
+systemctl restart ssh
 
 # Install unattended-upgrades for automatic security updates
-sudo apt install unattended-upgrades -y
+apt install unattended-upgrades -y
 
 # Prompt for new username and create the user
 read -p "Enter the username for the new user: " username
 
 # Create new user and set password
-sudo adduser "$username"
+adduser "$username"
 
 # Add the new user to the sudo group
-sudo usermod -aG sudo "$username"
+usermod -aG sudo "$username"
 
 echo "User $username has been created and added to the sudo group."
