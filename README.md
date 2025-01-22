@@ -49,52 +49,46 @@ This document contains links and resources that are frequently used for homelab,
 bash -c "$(wget -qLO - https://raw.githubusercontent.com/irrisdev/homelab/refs/heads/main/setup.sh)"
 ```
 
-### Update and Upgrade Packages
+### Default commands
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+# Update and Upgrade Packages
+apt update && apt upgrade -y
+
+# Enable Automatic Updates
+apt install unattended-upgrades -y
+
+# Install Fail2Ban
+apt install fail2ban -y
 ```
 
 ### Add new user and add to sudoers
 ```bash
-sudo adduser i
-sudo usermod -aG sudo i
+read -p "Enter new username: " username
+adduser "$username"
+usermod -aG sudo "$username"
+su "$username" && cd
+
+# Generate ssh key for new user
+ssh-keygen -t ed25519
 ```
 
-### Install Fail2Ban
+### Networking/Firewall Configurations
 ```bash
-sudo apt install fail2ban -y
-```
-
-### Configure sshd config
-```bash
-sudo nano /etc/ssh/sshd_config
-
-# Update settings in sshd_config:
-# PasswordAuthentication -> no
-# UsePAM -> no
-# PermitRootLogin -> no
-
-sed -i \
+sudo sed -i \
 -e 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' \
 -e 's/^PasswordAuthentication.*/PasswordAuthentication no/' \
 -e 's/^#*UsePAM.*/UsePAM no/' \
 /etc/ssh/sshd_config
-rm /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+sudo rm /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
 
 sudo systemctl enable ssh
 sudo systemctl restart ssh
-```
 
-### Configure Firewall (UFW)
-```bash
+# Configure Firewall (UFW)
 sudo ufw enable
 sudo ufw allow ssh
-```
-
-### Enable Automatic Updates
-```bash
-sudo apt install unattended-upgrades
+sufo ufw reload
 ```
 
 ### Download Docker
