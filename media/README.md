@@ -2,10 +2,6 @@
 
 ## Docker Containers 
 
-Jellystack : [YML Link](/media/jellystack.yml)
-- Jellyseer - Media Discovery
-- Other
-
 Servarr : [YML Link](/media/servarr.yml)
 - gluetun - VPN Client
 - qbittorrent - Torrent Client
@@ -15,6 +11,7 @@ Servarr : [YML Link](/media/servarr.yml)
 - sonarr - Shows
 - bazarr - Subtitles
 - flaresolverr - CloudFlare DNS Bypass
+- jellyseer - Media Discovery
 
 
 ### Supporting Links
