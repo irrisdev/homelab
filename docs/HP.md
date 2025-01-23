@@ -9,7 +9,7 @@
 
 #### Reduce Fan Noise
 Refer to this guide: [HP iLO4 v2.77 - Unlocked Access to Fan Controls](https://www.reddit.com/r/homelab/comments/sx3ldo/hp_ilo4_v277_unlocked_access_to_fan_controls/)
-
+WebUI to control it: [iLO Fan Control](https://github.com/alex3025/ilo-fans-controller/tree/main)
 #### SSH into iLO4
 `ssh -o KexAlgorithms=+diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa username@hostname` [[Link](https://www.incredigeek.com/home/troubleshooting-ssh-no-matching-key-exchange-host-key-method-type-found-errors/)]
 
