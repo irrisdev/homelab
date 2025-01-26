@@ -1,22 +1,35 @@
 services:
-    adguardhome:
-        container_name: adguardhome
-        restart: unless-stopped
-        volumes:
-            - /docker/adguardhome:/opt/adguardhome/work
-            - /docker/adguardhome/conf:/opt/adguardhome/conf
-        ports:
-            - 53:53/tcp
-            - 53:53/udp
-            # - 67:67/udp
-            # - 68:68/udp
-            - 80:80/tcp
-            - 443:443/tcp
-            - 443:443/udp
-            - 3000:3000/tcp
-            - 853:853/tcp
-            - 853:853/udp
-            - 5443:5443/tcp
-            - 5443:5443/udp
-            - 6060:6060/tcp
-        image: adguard/adguardhome
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      PUID: 1000 
+      PGID: 1000 
+    ports:
+      - 3333:3000
+    volumes:
+      - /path/to/config:/app/config 
+      - /var/run/docker.sock:/var/run/docker.sock:ro 
+    restart: unless-stopped
+    
+  adguardhome:
+    container_name: adguardhome
+    restart: unless-stopped
+    volumes:
+      - /docker/adguardhome:/opt/adguardhome/work
+      - /docker/adguardhome/conf:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      # - 67:67/udp
+      # - 68:68/udp
+      - 80:80/tcp
+      - 443:443/tcp
+      - 443:443/udp
+      # - 3000:3000/tcp
+      - 853:853/tcp
+      - 853:853/udp
+      - 5443:5443/tcp
+      - 5443:5443/udp
+      - 6060:6060/tcp
+    image: adguard/adguardhome
