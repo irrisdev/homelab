@@ -1,0 +1,11 @@
+services:
+    ilo-fans-controller:
+        container_name: ilo-fans-controller
+        restart: always
+        ports:
+            - 8888:80
+        environment:
+            - ILO_HOST=${ILO_HOST}
+            - ILO_USERNAME=${ILO_USERNAME}
+            - ILO_PASSWORD=${ILO_PASSWORD}
+        image: ghcr.io/alex3025/ilo-fans-controller:latest
