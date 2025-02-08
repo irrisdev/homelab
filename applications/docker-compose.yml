@@ -1,0 +1,61 @@
+# Core services running on nova
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      PUID: 1000 
+      PGID: 1000 
+    ports:
+      - 3333:3000
+    volumes:
+      - /path/to/config:/app/config 
+      - /var/run/docker.sock:/var/run/docker.sock:ro 
+    restart: unless-stopped
+
+    ilo-fans-controller:
+        container_name: ilo-fans-controller
+        restart: always
+        ports:
+            - 8888:80
+        environment:
+            - ILO_HOST=${ILO_HOST}
+            - ILO_USERNAME=${ILO_USERNAME}
+            - ILO_PASSWORD=${ILO_PASSWORD}
+        image: ghcr.io/alex3025/ilo-fans-controller:latest
+
+  # adguardhome:
+  #   container_name: adguard
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /docker/adguardhome:/opt/adguardhome/work
+  #     - /docker/adguardhome/conf:/opt/adguardhome/conf
+  #   ports:
+  #     # Plain DNS
+  #     - 53:53/tcp
+  #     - 53:53/udp
+
+  #     # DHCP server
+  #     - 67:67/udp
+  #     - 68:68/tcp
+  #     - 68:68/udp
+
+  #     # Admin panel & DNS over HTTPS
+  #     - 80:80/tcp
+  #     - 443:443/tcp
+  #     - 443:443/udp
+  #     # - 3000:3000/tcp for initial setup only
+
+  #     # DNS over TLS
+  #     - 853:853/tcp
+
+  #     # DNS over QUIC
+  #     - 784:784/udp 
+  #     - 8853:8853/udp
+  #     - 853:853/udp
+
+  #     # DNSCrypt server
+  #     - 5443:5443/tcp
+  #     - 5443:5443/udp
+
+  #   image: adguard/adguardhome
