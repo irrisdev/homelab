@@ -14,6 +14,13 @@ This document contains links and resources that are frequently used for homelab,
 - [ ] Home Assistant
 - [ ] Net Data
 - [ ] Grafana
+- [ ] opnSense
+
+#### Ideas
+- [ ] Self host Gitlab
+- [ ] Storage solution - nextcloud
+- [ ] Data redundancy / backups
+- [ ] Terraform & CI/CD
 
 ## Useful Resources
 
