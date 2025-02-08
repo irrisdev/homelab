@@ -6,21 +6,14 @@ This document contains links and resources that are frequently used for homelab,
 - [x] Media Server (Jellyfin) 
 - [x] DNS Server (Adguard)
 - [x] Docker Manager (Portainer)
+- [x] Tailscale
+- [x] Traefik / NGINX Proxy Manager
+- [x] Homepage
 
 #### Coming
-- [ ] Traefik / NGINX Proxy Manager
 - [ ] Home Assistant
-- [ ] Homepage
 - [ ] Net Data
 - [ ] Grafana
-- [ ] Tailscale
-
-### Tasks
-- [x] Configure Hardware RAID
-- [x] Upgrade BIOS Firmware
-- [ ] Setup TrueNAS - DL320e (6TB)
-- [x] Setup Proxmox - DL380p (8TB)
-- [ ] Reduce Fanspeeds [Link](https://www.reddit.com/r/homelab/comments/sx3ldo/hp_ilo4_v277_unlocked_access_to_fan_controls/)
 
 ## Useful Resources
 
