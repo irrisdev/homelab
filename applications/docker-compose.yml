@@ -1,5 +1,27 @@
 # Core services running on nova
+networks:
+  frontend:
+    external: true
+    
 services:
+
+  nginx-proxy-manager:
+    container_name: nginx-proxy-manager
+    image: jc21/nginx-proxy-manager:latest
+    networks:
+      - frontend
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+      # - '21:21' # FTP
+    environment:
+      DISABLE_IPV6: 'true'
+    volumes:
+      - /docker/nginx/data:/data
+      - /docker/nginx/letsencrypt:/etc/letsencrypt
+
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -13,17 +35,32 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro 
     restart: unless-stopped
 
-    ilo-fans-controller:
-        container_name: ilo-fans-controller
-        restart: always
-        ports:
-            - 8888:80
-        environment:
-            - ILO_HOST=${ILO_HOST}
-            - ILO_USERNAME=${ILO_USERNAME}
-            - ILO_PASSWORD=${ILO_PASSWORD}
-        image: ghcr.io/alex3025/ilo-fans-controller:latest
+  ilo-fans-controller:
+    container_name: ilo-fans-controller
+    image: ghcr.io/alex3025/ilo-fans-controller:latest
+    restart: unless-stopped
+    ports:
+      - 8888:80
+    environment:
+      - ILO_USERNAME=${ILO_USERNAME}
+      - ILO_HOST=${ILO_HOST}
+      - ILO_PASSWORD=${ILO_PASSWORD}
 
+  # traefik:
+  #   container_name: traefik
+  #   command:
+  #   image: traefik:latest
+  #   ports:
+  #     - "80:80"
+  #     - "8080:8080"
+  #   networks:
+  #     - frontend
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /docker/traefik/traefik.yml:/etc/traefik/traefik.yml
+  #     - /docker/traefik/config:/etc/traefik/config
+  #   restart: unless-stopped
+  
   # adguardhome:
   #   container_name: adguard
   #   restart: unless-stopped
