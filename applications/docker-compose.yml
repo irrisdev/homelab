@@ -1,15 +1,10 @@
 # Core services running on nova
-networks:
-  frontend:
-    external: true
-    
+
 services:
 
   nginx-proxy-manager:
     container_name: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
-    networks:
-      - frontend
     restart: unless-stopped
     ports:
       - 80:80
@@ -45,6 +40,46 @@ services:
       - ILO_USERNAME=${ILO_USERNAME}
       - ILO_HOST=${ILO_HOST}
       - ILO_PASSWORD=${ILO_PASSWORD}
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - 15534:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - pg_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_ENABLE_TLS: 1
+    volumes:
+      - /docker/nginx/letsencrypt/live/npm-1/fullchain.pem:/certs/server.cert:ro
+      - /docker/nginx/letsencrypt/live/npm-1/privkey.pem:/certs/server.key:ro
+    ports:
+      - 15535:443
+    depends_on:
+      - postgres
+    networks:
+      - pg_network
+
+volumes:
+  pg_data:
+
+networks:
+  pg_network:
+    driver: bridge
 
   # traefik:
   #   container_name: traefik
