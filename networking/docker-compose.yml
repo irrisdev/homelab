@@ -1,0 +1,61 @@
+networks:
+  tailscale_exit:
+    driver: bridge
+
+services:
+
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    networks:
+      - tailscale_exit
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /docker/gluetun:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=protonvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - SERVER_COUNTRIES=United Kingdom
+      - SERVER_CITIES=London
+      - HEALTH_VPN_DURATION_INITIAL=120s
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.1.0/24
+    healthcheck:
+      test: ping -c 1 www.google.com || exit 1
+      interval: 60s
+      timeout: 20s
+      retries: 5
+    restart: unless-stopped
+
+  adguardhome:
+    container_name: adguardhome
+    restart: unless-stopped
+    network_mode: "host"        
+    volumes:
+      - /docker/adguardhome:/opt/adguardhome/work
+      - /docker/adguardhome/conf:/opt/adguardhome/conf
+      - /docker/adguardhome/certs:/opt/adguardhome/certs
+
+    image: adguard/adguardhome
+  
+  tailscale:
+    image: tailscale/tailscale:latest
+    network_mode: "host"        
+    container_name: tailscale
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_EXTRA_ARGS=--accept-routes
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_ROUTES=192.168.1.0/24
+      - TS_USERSPACE=false
+      - TS_HOSTNAME=${TAILSCALE_HOSTNAME}
+    volumes:
+      - /docker/tailscale/state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+    restart: unless-stopped
